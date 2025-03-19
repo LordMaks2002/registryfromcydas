@@ -16,11 +16,19 @@ class _MainAppState extends State<MainApp> {
   final TextEditingController _controller1 = TextEditingController();
   final String currentEmail = "gmail@gmail.com";
   final String currentPassword = '12345678';
+  String registrationMessage = '';
+  bool colorChange = false;
+
   bool stateButton() {
-    return _controller.text ==
-            currentEmail && //_controller1.text == currentPassword; воно приймає то що введено в полі для ведення і порівеює//
-        _controller1.text ==
-            currentPassword; //_controller1.text == currentPassword; воно приймає то що введено в полі для ведення і порівеює//
+    return _controller.text == currentEmail &&
+        _controller1.text == currentPassword;
+  }
+
+  void submitActive() {
+    setState(() {
+      registrationMessage = 'Ви зайшли в профіль';
+      colorChange = true;
+    });
   }
 
   @override
@@ -86,10 +94,12 @@ class _MainAppState extends State<MainApp> {
                     ElevatedButton(
                       onPressed: stateButton()
                           ? () {
-                              print("tese");
+                              submitActive();
                             }
                           : null,
                       style: TextButton.styleFrom(
+                        backgroundColor:
+                            colorChange ? Colors.green : Colors.grey,
                         side: BorderSide(
                             color: _controller.text.isNotEmpty &&
                                     _controller1.text.isNotEmpty
@@ -97,6 +107,15 @@ class _MainAppState extends State<MainApp> {
                                 : Color.fromARGB(2, 0, 0, 0)),
                       ),
                       child: Text('Submit'),
+                    ),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Text(
+                      registrationMessage,
+                      style: TextStyle(
+                          color: const Color.fromARGB(255, 0, 255, 8),
+                          fontSize: 16),
                     ),
                   ],
                 ),
