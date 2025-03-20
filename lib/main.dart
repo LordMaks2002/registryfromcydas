@@ -74,7 +74,7 @@ class _MainAppState extends State<MainApp> {
                         ),
                         TextField(
                           controller: _controller1,
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           textAlign: TextAlign.end,
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
